@@ -1,1 +1,1 @@
-### Můj informační systém - pro firmy, školy, organizace i státní správu. Spojuje správu dat, komunikaci, automatizaci a analýzu do jednoho prostředí. 
+### Systém pro turistické výpravy.
