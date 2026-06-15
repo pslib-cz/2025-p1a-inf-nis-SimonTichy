@@ -23,9 +23,7 @@
         <button id="menuBtn" class="menu-btn" aria-label="Otevřít menu">☰</button>
         <nav id="nav" aria-label="Hlavní navigace">
             <a href="#overview">Přehled</a>
-            <a href="#requirements">Požadavky</a>
-            <a href="#nfr">NFR</a>
-            <a href="#gdpr">GDPR</a>
+            <a href="#requirements_etc">Požadavky</a>
             <a href="#roles">Role</a>
             <a href="#diagrams">Diagramy</a>
             <a href="#database">Databáze</a>
@@ -145,7 +143,7 @@
 </section>
 
 <!-- ── Requirements ── -->
-<section id="requirements">
+<section id="requirements_etc">
     <div class="container">
         <div class="section-title">
             <h2>Katalog požadavků</h2>
@@ -744,25 +742,42 @@
 
 <!-- ── Architecture ── -->
 <section id="architecture">
-    <div class="container">
-        <div class="section-title"><h2>Architektura systému</h2></div>
-        <div class="arch-stack" role="list">
-            <div class="arch-block" role="listitem">Frontend</div>
-            <div class="arch-connector" aria-hidden="true">↓</div>
-            <div class="arch-block" role="listitem">REST API</div>
-            <div class="arch-connector" aria-hidden="true">↓</div>
-            <div class="arch-block" role="listitem">Databáze</div>
-            <div class="arch-connector" aria-hidden="true">↓</div>
-            <div class="arch-block" role="listitem">Externí služby</div>
-        </div>
+    <div style="display:flex; gap:3rem; align-items:flex-start; justify-content:center;">
+
+    <div class="arch-stack" role="list">
+        <div class="arch-block" role="listitem">Frontend</div>
+        <div class="arch-connector" aria-hidden="true">↓</div>
+        <div class="arch-block" role="listitem">REST API</div>
+        <div class="arch-connector" aria-hidden="true">↓</div>
+        <div class="arch-block" role="listitem">Databáze</div>
+        <div class="arch-connector" aria-hidden="true">↓</div>
+        <div class="arch-block" role="listitem">Externí služby</div>
     </div>
+
+    <p style="color:#6b7280; font-size:0.775rem; line-height:1.7; max-width:400px; margin:0; font-style:italic;">
+        Systém má čtyři vrstvy. Každá vrstva komunikuje pouze s vrstvou přímo pod sebou, nikdy nepřeskakuje.
+        <br><br>
+        Frontend (React / React Native) je to, co uživatel vidí a ovládá. Veškeré požadavky posílá na REST API, nikdy přímo do databáze.
+        <br><br>
+        REST API tvoří backend. Ověřuje JWT tokeny, kontroluje oprávnění a volá správné služby. Je jediným vstupním bodem do systému.
+        <br><br>
+        Databáze drží data trvale. PostgreSQL ukládá uživatele, trasy a výpravy. Redis obstarává cache a sessions. Fotografie jdou do S3 na AWS Frankfurt.
+        <br><br>
+        Externí služby volá API podle potřeby: Weather API pro počasí, Mapbox pro mapy, Stripe pro platby. Podrobnou infrastrukturu (Kubernetes, Load Balancer, repliky DB) najdeš v Deployment Diagramu výše.
+    </p>
+</div>
 </section>
+
 
 <!-- ── Footer ── -->
 <footer>
-    <div class="container">
-        <h3>HikeBase</h3>
-        <p>Dokumentace informačního systému.</p>
+    <div class="container" style="display:flex; justify-content:center; align-items:center; padding-top:2rem; padding-bottom:2rem; border-top:1px solid #e5e7eb;">
+        <div>
+            <h3 style="margin:0 0 0.25rem 0;">HikeBase</h3>
+            <p style="margin:0; color:#6b7280; font-size:0.875rem;">Dokumentace informačního systému.</p>
+        </div>
+
+        </div>
     </div>
 </footer>
 
